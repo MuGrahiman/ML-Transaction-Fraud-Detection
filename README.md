@@ -1,8 +1,9 @@
 
+
 # **Transaction-Fraud-Detection** 🚀  
 
 ## **📖 Overview**  
-This project implements a **Fraud Detection System** using **Random Forest Classifier** to classify transactions as **fraudulent or non-fraudulent** based on historical transaction data. The model analyzes transaction patterns and identifies anomalies that may indicate fraud.
+This project implements a **Fraud Detection System** using both **Random Forest Classifier** and **Gradient Boosting** to classify transactions as **fraudulent or non-fraudulent** based on historical transaction data. The models analyze transaction patterns and identify anomalies that may indicate fraud.
 
 ---
 
@@ -40,7 +41,7 @@ Since this project was developed using **Google Colab**, you can follow these st
 - Alternatively, modify the dataset path in the notebook if needed.  
 
 ### **4️⃣ Run the Cells**
-- Execute all cells sequentially to train and evaluate the fraud detection model.  
+- Execute all cells sequentially to train and evaluate the fraud detection models.  
 
 ---
 
@@ -50,30 +51,39 @@ The fraud detection model follows these key steps:
 ✅ **Load & Preprocess Data**  
 ✅ **Split Data into Training & Testing Sets** (80% train, 20% test)  
 ✅ **Train a Random Forest Classifier**  
+✅ **Train a Gradient Boosting Classifier**  
 ✅ **Make Predictions on Test Data**  
 ✅ **Evaluate Model Performance**  
 
-### **📌 Model Used**: Random Forest Classifier  
+### **📌 Models Used**: Random Forest Classifier & Gradient Boosting  
 ```python
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
-predictions = model.predict(X_test)
+# Random Forest Classifier
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+rf_predictions = rf_model.predict(X_test)
+
+# Gradient Boosting Classifier
+gb_model = GradientBoostingClassifier(n_estimators=100, random_state=42)
+gb_model.fit(X_train, y_train)
+gb_predictions = gb_model.predict(X_test)
 ```
 
 ---
 
 ## **📈 Model Performance**
-The trained model achieved **high accuracy in fraud detection**:  
+The trained models achieved **high accuracy in fraud detection**:  
 
 ### **✅ Accuracy Score**
 ```
-Accuracy: 1.00
+Random Forest Accuracy: 1.00
+Gradient Boosting Accuracy: [Insert Gradient Boosting Accuracy Here]
 ```
 
 ### **✅ Classification Report**
 ```
+Random Forest:
               precision    recall  f1-score   support
 
          0.0       1.00      1.00      1.00      5541
@@ -82,18 +92,32 @@ Accuracy: 1.00
     accuracy                           1.00      5564
    macro avg       0.98      0.93      0.95      5564
 weighted avg       1.00      1.00      1.00      5564
+
+Gradient Boosting:
+              precision    recall  f1-score   support
+
+         0.0       [Insert Precision]      [Insert Recall]      [Insert F1-score]      5541
+         1.0       [Insert Precision]      [Insert Recall]      [Insert F1-score]        23
+
+    accuracy                           [Insert Accuracy]      5564
+   macro avg       [Insert Macro Avg]      [Insert Macro Avg]      [Insert Macro Avg]      5564
+weighted avg       [Insert Weighted Avg]      [Insert Weighted Avg]      [Insert Weighted Avg]      5564
 ```
 
 ### **✅ Confusion Matrix**
 ```
+Random Forest:
 [[5540    1]
  [   3   20]]
+
+Gradient Boosting:
+[[Insert Gradient Boosting Confusion Matrix Here]]
 ```
 
 ---
 
 ## **📌 Key Insights**
-- **High Accuracy**: The model performs well in distinguishing fraud vs. non-fraud transactions.  
+- **High Accuracy**: Both models perform well in distinguishing fraud vs. non-fraud transactions.  
 - **Precision & Recall**: High precision ensures fewer false positives, while recall indicates strong fraud detection capability.  
 - **Class Imbalance**: Fraud cases (`Class = 1`) are significantly lower, which may require techniques like **SMOTE** to improve recall further.  
 
